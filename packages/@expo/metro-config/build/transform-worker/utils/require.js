@@ -28,7 +28,8 @@ const path = __importStar(require("node:path"));
 const url = __importStar(require("node:url"));
 async function tryRequireThenImport(moduleId) {
     try {
-        return require(moduleId);
+        const module = require(moduleId);
+        return module.default ?? module;
     }
     catch (requireError) {
         let importESM;

@@ -3,7 +3,8 @@ import * as url from 'node:url';
 
 export async function tryRequireThenImport<TModule>(moduleId: string): Promise<TModule> {
   try {
-    return require(moduleId);
+    const module = require(moduleId);
+    return module.default ?? module;
   } catch (requireError: any) {
     let importESM;
     try {
